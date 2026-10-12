@@ -1,413 +1,218 @@
-# 🗓️ Kế hoạch 30 ngày — Code theo Syllabus Level 1 & 2
+# 🎯 Kế hoạch 30 ngày luyện CODE: CoreAI → CV (Ưu tiên 1) → NLP (Ưu tiên 2)
 
-> **Đã có**: Lý thuyết + bài tập tính tay Week 1–3 ML Spec ✅  
-> **Scope**: Code song song + code lại phần đã học · Level 1 (CoreAI) → Level 2 (NLP · RAG · CV)  
-> **Budget**: 3h/ngày · **Không có ngày đọc lý thuyết** — chỉ code
-
-> [!NOTE]
-> Các phần **SKIP** trong syllabus được đánh dấu rõ — không mất thời gian vào đó.
+> **Mục tiêu**: Chuẩn bị lock-in Lab sau 30 ngày.  
+> **Định hướng nghiên cứu**: Multimodal Representation Learning (Biomedical) · Foundation Models · Sequential Decision Making (RL).  
+> **Chiến lược co gọn**: 
+> - **Level 1 (Core AI)**: 12 ngày (Nền tảng vững, implement scratch + PyTorch).
+> - **Level 2 Track CV (Ưu tiên 1)**: 9 ngày (CNN, ResNet, Vision Transformer - ViT, CLIP đa mô thức).
+> - **Level 2 Track NLP (Ưu tiên 2)**: 6 ngày (Embeddings, Seq2Seq, Transformer Text, BERT fine-tuning).
+> - **RL & Tổng kết**: 3 ngày (MDP, Q-Learning/DQN cơ bản làm bàn đạp cho Sequential Decision Making).
+> - *(Đã cắt bỏ: Track RAG, Siamese Networks, Autocorrect, các phần SKIP trong syllabus).*
 
 ---
 
-## ⚡ Setup — Làm trước ngày 1 (30 phút)
-
+## 🛠️ Chuẩn bị môi trường (30 phút Ngày 0)
+Trong thư mục `C:\Users\HELLO\Documents\DSKT\30-ds-kt`:
 ```bash
 pip install torch torchvision numpy pandas matplotlib scikit-learn
-pip install gymnasium nltk transformers datasets
-pip install sentence-transformers faiss-cpu
-```
-Tạo repo `lab-level1-2` trên GitHub — push code mỗi ngày.
-
----
-
-## 📅 LEVEL 1 — CoreAI Coding (Ngày 1–15)
-
----
-
-### 🔵 ML Specialization Coding (Ngày 1–5)
-
----
-
-#### Ngày 1 · Code lại: Linear Regression từ scratch
-*Bạn đã chứng minh tay → giờ implement*
-
-| | |
-|---|---|
-| **Resource** | [Google MLCC - Linear Regression](https://developers.google.com/machine-learning/crash-course/linear-regression) |
-| **Implement** | MSE loss · Gradient descent · Train loop · Learning rate schedule |
-| **Verify** | So sánh với `sklearn.LinearRegression` — phải cho cùng kết quả |
-| **Deliverable** | `day01_linear_regression.py` + loss curve plot |
-
----
-
-#### Ngày 2 · Code lại: Logistic Regression từ scratch
-*Week 3 ML Spec đã học lý thuyết*
-
-| | |
-|---|---|
-| **Resource** | [Google MLCC - Logistic Regression](https://developers.google.com/machine-learning/crash-course/logistic-regression) |
-| **Implement** | Sigmoid · Binary cross-entropy · Gradient descent · Decision boundary 2D |
-| **Metrics** | Accuracy · Precision · Recall · F1 · ROC-AUC |
-| **Deliverable** | `day02_logistic_regression.py` + ROC curve |
-
----
-
-#### Ngày 3 · Code: Bias-Variance · Regularization (ML Spec Course 2 Week 3)
-
-| | |
-|---|---|
-| **Resource** | [D2L Ch.3.6 Generalization](https://d2l.ai/chapter_linear-regression/generalization.html) + [Ch.3.7 Weight Decay](https://d2l.ai/chapter_linear-regression/weight-decay.html) |
-| **Implement** | L2 regularization (weight decay) · Plot train/val loss vs lambda · K-Fold CV từ scratch |
-| **Deliverable** | `day03_regularization.py` + bias-variance tradeoff plot |
-
----
-
-#### Ngày 4 · Code: Decision Trees + Tree Ensembles (ML Spec Course 2 Week 4)
-
-| | |
-|---|---|
-| **Resource** | [Kaggle Learn - Intro to ML](https://www.kaggle.com/learn/intro-to-machine-learning) (bài Decision Trees + Random Forest) |
-| **Implement** | Dùng sklearn DecisionTreeClassifier + RandomForest · Tune max_depth · Feature importance bar plot |
-| **Không cần** | Implement Decision Tree từ scratch (tốn thời gian, không trong scope) |
-| **Deliverable** | `day04_trees.py` + feature importance visualization |
-
----
-
-#### Ngày 5 · Code: Clustering + RL Intro (ML Spec Course 3)
-
-| | |
-|---|---|
-| **Clustering** | K-Means từ scratch (numpy): khởi tạo centroids → assign → update → lặp |
-| **RL Intro** | Chạy `gymnasium.make("FrozenLake-v1")` · Random policy · In reward trung bình |
-| **Resource** | [D2L Ch.17.1 MDP](https://d2l.ai/chapter_reinforcement-learning/mdp.html) (đọc nhanh 20 phút) |
-| **Deliverable** | `day05_kmeans_rl_intro.py` |
-
----
-
-### 🔴 Deep Learning Specialization Coding (Ngày 6–15)
-
----
-
-#### Ngày 6 · PyTorch Basics + DLS Course 1 Week 2
-*Logistic Regression as Neural Network — lần đầu code với PyTorch*
-
-| | |
-|---|---|
-| **Resource** | [D2L Ch.2 Preliminaries](https://d2l.ai/chapter_preliminaries/index.html) |
-| **Implement** | Tensor ops · Autograd · Viết lại Logistic Regression ngày 2 bằng `nn.Module` |
-| **Mục tiêu** | Cùng kết quả với day02, nhưng dùng PyTorch hoàn toàn |
-| **Deliverable** | `day06_pytorch_logistic.py` |
-
----
-
-#### Ngày 7 · DLS Course 1 Week 3–4: Shallow → Deep Neural Network
-
-| | |
-|---|---|
-| **Resource** | [D2L Ch.4 Linear Classification](https://d2l.ai/chapter_linear-classification/index.html) + [Ch.5 MLP](https://d2l.ai/chapter_multilayer-perceptrons/index.html) |
-| **Implement** | MLP với `nn.Sequential` · Train/Val split · `DataLoader` · Plot learning curves |
-| **Dataset** | Fashion-MNIST (torchvision) |
-| **Deliverable** | `day07_mlp_fashionmnist.py` + accuracy curve |
-
----
-
-#### Ngày 8 · DLS Course 2 Week 1: Regularization trong PyTorch
-
-| | |
-|---|---|
-| **Resource** | [D2L Ch.5.6 Dropout](https://d2l.ai/chapter_multilayer-perceptrons/dropout.html) |
-| **Implement** | Dropout · L2 weight decay trong optimizer · Train/Val curves showing overfitting → regularized |
-| **Deliverable** | `day08_regularization_dl.py` + before/after overfitting plot |
-
----
-
-#### Ngày 9 · DLS Course 2 Week 2: Optimization Algorithms
-
-| | |
-|---|---|
-| **Resource** | [D2L Ch.12](https://d2l.ai/chapter_optimization/index.html) |
-| **Implement** | SGD · Momentum · Adam — implement từ scratch bằng numpy, rồi dùng `torch.optim` |
-| **Visualize** | Convergence speed của 3 optimizer trên cùng 1 loss landscape |
-| **Deliverable** | `day09_optimizers.py` + convergence comparison plot |
-
-> [!IMPORTANT]
-> Adam là optimizer mặc định trong hầu hết mọi thứ ở Level 2 — hiểu kỹ tại sao.
-
----
-
-#### Ngày 10 · DLS Course 2 Week 3: Batch Normalization + Hyperparameter Tuning
-
-| | |
-|---|---|
-| **Resource** | [D2L Ch.8.5 BatchNorm](https://d2l.ai/chapter_convolutional-modern/batch-norm.html) |
-| **Implement** | Thêm BatchNorm vào MLP ngày 7 · So sánh training với/không có BatchNorm |
-| **Tune** | Learning rate · Batch size · Số layers — dùng vòng lặp đơn giản, không cần AutoML |
-| **Deliverable** | `day10_batchnorm_tuning.py` |
-
----
-
-#### Ngày 11 · DLS Course 4 Week 1: CNN từ scratch → LeNet
-
-| | |
-|---|---|
-| **Resource** | [D2L Ch.7.6 LeNet](https://d2l.ai/chapter_convolutional-neural-networks/lenet.html) |
-| **Implement** | `nn.Conv2d` + `nn.MaxPool2d` · Build LeNet · Train trên MNIST |
-| **Hiểu** | Feature maps: visualize output của mỗi conv layer |
-| **Deliverable** | `day11_lenet.py` + feature map visualization |
-
----
-
-#### Ngày 12 · DLS Course 5 Week 1: RNN + LSTM
-
-| | |
-|---|---|
-| **Resource** | [D2L Ch.9.4-9.6](https://d2l.ai/chapter_recurrent-neural-networks/rnn.html) |
-| **Implement** | `nn.RNN` → `nn.LSTM` · Character-level language model đơn giản |
-| **Bỏ qua** | Implement BPTT từ scratch (DLS SKIP note: đã học ở DLS C5W1) |
-| **Deliverable** | `day12_lstm_charmodel.py` |
-
----
-
-#### Ngày 13 · DLS Course 5 Week 2: Word Embeddings
-
-| | |
-|---|---|
-| **Resource** | [D2L Ch.15.1-15.4](https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html) |
-| **Implement** | Load pretrained GloVe · Cosine similarity · Word analogy: king - man + woman = ? |
-| **Visualize** | t-SNE của word embeddings |
-| **Deliverable** | `day13_word_embeddings.py` + t-SNE plot |
-
----
-
-#### Ngày 14 · DLS Course 5 Week 4 + GenAI Week 1: Transformer
-
-| | |
-|---|---|
-| **Resource** | [D2L Ch.11.7 Transformer](https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html) |
-| **Implement** | Multi-Head Attention với `nn.MultiheadAttention` · Positional Encoding · Transformer Encoder block |
-| **Visualize** | Attention heatmap |
-| **Deliverable** | `day14_transformer_encoder.py` + attention heatmap |
-
----
-
-#### Ngày 15 · GenAI Week 2: Fine-tuning + PEFT (LoRA nhẹ)
-
-| | |
-|---|---|
-| **Resource** | HuggingFace `transformers` + `peft` library |
-| **Implement** | Load `bert-base-uncased` · Fine-tune cho text classification · So sánh full fine-tune vs freeze backbone |
-| **Deliverable** | `day15_finetune_bert.py` |
-
----
-
-## 📅 LEVEL 2 — NLP · RAG · CV Coding (Ngày 16–30)
-
----
-
-### 🟢 NLP Track Coding (Ngày 16–21)
-
----
-
-#### Ngày 16 · NLP Course 1 Week 2: Naïve Bayes Classifier
-
-| | |
-|---|---|
-| **Implement** | Naïve Bayes từ scratch: đếm frequency → prior/likelihood → log-likelihood → predict |
-| **Dataset** | Sentiment analysis (Twitter dataset từ NLTK) |
-| **Note** | Week 1 (Logistic Reg) đã học ở Level 1 — SKIP |
-| **Deliverable** | `day16_naive_bayes.py` |
-
----
-
-#### Ngày 17 · NLP Course 1 Week 3–4: Vector Space + Word Translation
-
-| | |
-|---|---|
-| **Implement** | TF-IDF từ scratch · Cosine similarity cho document search · PCA để visualize word vectors 2D |
-| **Bonus** | Word translation bằng linear transformation (alignment matrix) |
-| **Deliverable** | `day17_vector_space.py` + PCA word cluster plot |
-
----
-
-#### Ngày 18 · NLP Course 2 Week 2–3: HMM + N-gram Language Model
-
-| | |
-|---|---|
-| **HMM** | Viterbi algorithm cho POS tagging — implement forward + backward pass |
-| **N-gram** | Bigram language model từ scratch · Perplexity evaluation |
-| **Deliverable** | `day18_hmm_ngram.py` |
-
----
-
-#### Ngày 19 · NLP Course 2 Week 4: Word2Vec (CBOW)
-
-| | |
-|---|---|
-| **Implement** | CBOW model: sliding window → one-hot → embedding → softmax |
-| **Train** | Trên small corpus |
-| **Compare** | Embedding của CBOW vs GloVe pretrained (ngày 13) |
-| **Deliverable** | `day19_word2vec_cbow.py` |
-
----
-
-#### Ngày 20 · NLP Course 3 Week 2: LSTM + NER
-
-| | |
-|---|---|
-| **Resource** | HuggingFace `datasets` — CoNLL-2003 NER dataset |
-| **Implement** | Bi-LSTM cho Named Entity Recognition · Train/eval với F1 per entity class |
-| **Deliverable** | `day20_bilstm_ner.py` |
-
----
-
-#### Ngày 21 · NLP Course 4 Week 1–2: Seq2Seq + Transformer NMT
-
-| | |
-|---|---|
-| **Implement** | Encoder-Decoder với Attention · BLEU score evaluation |
-| **Dùng** | HuggingFace `MarianMTModel` để baseline · So sánh với model tự train |
-| **Deliverable** | `day21_seq2seq_nmt.py` |
-
----
-
-### 🟡 RAG Track Coding (Ngày 22–25)
-
----
-
-#### Ngày 22 · RAG Module 1–2: TF-IDF + BM25 Search
-
-| | |
-|---|---|
-| **Implement** | TF-IDF retrieval từ scratch · BM25 retrieval (`rank_bm25` library) |
-| **Task** | Build simple document search engine: query → top-K relevant docs |
-| **Deliverable** | `day22_tfidf_bm25.py` |
-
----
-
-#### Ngày 23 · RAG Module 2–3: Semantic Search + Vector DB
-
-| | |
-|---|---|
-| **Implement** | Sentence embeddings với `sentence-transformers` · FAISS index · Cosine/ANN search |
-| **Compare** | BM25 vs Semantic Search — khi nào cái nào tốt hơn? |
-| **Deliverable** | `day23_semantic_search.py` |
-
----
-
-#### Ngày 24 · RAG Module 3–4: Chunking + Reranking + Prompt Engineering
-
-| | |
-|---|---|
-| **Implement** | Text chunking strategies (fixed, sentence, semantic) · Cross-encoder reranking |
-| **Integrate** | Retriever + LLM (dùng OpenAI API hoặc local Ollama) · Build mini RAG pipeline |
-| **Deliverable** | `day24_rag_pipeline.py` |
-
----
-
-#### Ngày 25 · RAG Module 5: Evaluation + Mini-project RAG
-
-| | |
-|---|---|
-| **Implement** | RAGAS-style evaluation: faithfulness + answer relevancy |
-| **Mini-project** | RAG Q&A trên một domain nhỏ (medical papers / course notes) |
-| **Deliverable** | `week4_rag_qa/` — README + demo · **Push GitHub** |
-
----
-
-### 🟣 Computer Vision Track Coding (Ngày 26–30)
-
----
-
-#### Ngày 26 · CV Unit 1–2: CNN Architectures + Transfer Learning
-
-| | |
-|---|---|
-| **Implement** | Load VGG/ResNet/MobileNet từ `torchvision.models` · So sánh params, FLOPs, accuracy |
-| **Fine-tune** | ResNet-18 trên small image dataset (CIFAR-10 hoặc medical) |
-| **Deliverable** | `day26_cnn_transfer.py` + accuracy comparison table |
-
----
-
-#### Ngày 27 · CV Unit 3: Vision Transformer (ViT)
-
-| | |
-|---|---|
-| **Implement** | Patch embedding · ViT Encoder với `nn.MultiheadAttention` |
-| **Dùng** | HuggingFace `ViTForImageClassification` · Fine-tune trên CIFAR-10 |
-| **Compare** | CNN (ResNet) vs ViT — accuracy + speed |
-| **Deliverable** | `day27_vit.py` |
-
----
-
-#### Ngày 28 · CV Unit 4: Multimodal Models — CLIP
-
-| | |
-|---|---|
-| **Dùng** | `openai/clip-vit-base-patch32` từ HuggingFace |
-| **Task 1** | Zero-shot image classification: không train, chỉ dùng text prompt |
-| **Task 2** | Image-text similarity search |
-| **Task 3** | Visualize attention maps của CLIP |
-| **Deliverable** | `day28_clip_multimodal.py` + zero-shot demo |
-
----
-
-#### Ngày 29 · CV Unit 5: Generative Models — VAE + Diffusion intro
-
-| | |
-|---|---|
-| **VAE** | Implement VAE nhỏ với PyTorch · Train trên MNIST · Visualize latent space interpolation |
-| **Diffusion** | Dùng `diffusers` library: load Stable Diffusion nhỏ · Text-to-image inference |
-| **Không cần** | Implement diffusion từ scratch |
-| **Deliverable** | `day29_vae_diffusion.py` + generated samples |
-
----
-
-#### Ngày 30 · Final: Tổng kết + GitHub cleanup
-
-| | |
-|---|---|
-| **Việc làm** | Viết README tổng cho repo `lab-level1-2` · Document 5 deliverable quan trọng nhất |
-| **Review** | Chạy lại 3 code quan trọng: Transformer (ngày 14) · CLIP (ngày 28) · RAG pipeline (ngày 24) |
-| **Chuẩn bị** | Note những concept còn mơ hồ → hỏi mentor khi vào lab |
-| **Deliverable** | Repo GitHub sạch với README tổng + `requirements.txt` |
-
----
-
-## 📊 Timeline tổng hợp
-
-```
-Ngày  1- 5  │ 🔵 ML Spec    │ Linear Reg → Log Reg → Regularization → Trees → Clustering + RL intro
-Ngày  6-10  │ 🔴 DL Spec ①  │ PyTorch basics → MLP → Regularization DL → Optimization → BatchNorm
-Ngày 11-15  │ 🔴 DL Spec ②  │ CNN/LeNet → RNN/LSTM → Word Embeddings → Transformer → Fine-tune BERT
-Ngày 16-21  │ 🟢 NLP Track  │ Naïve Bayes → Vector Space → HMM → Word2Vec → NER → Seq2Seq
-Ngày 22-25  │ 🟡 RAG Track  │ TF-IDF/BM25 → Semantic Search → RAG pipeline → Evaluation
-Ngày 26-30  │ 🟣 CV Track   │ CNN Architectures → ViT → CLIP Multimodal → VAE → Final cleanup
+pip install transformers datasets sentencepiece timm
+pip install gymnasium
 ```
 
 ---
 
-## 🔗 Resource mapping
+## 📅 CHẶNG 1: LEVEL 1 — CORE AI CODING (Ngày 1 – 12)
 
-| Ngày | Resource chính |
-|---|---|
-| 1–3 | [Google MLCC Exercises](https://developers.google.com/machine-learning/crash-course/exercises) |
-| 4–5 | [Kaggle Learn](https://www.kaggle.com/learn) |
-| 6–14 | [D2L.ai](https://d2l.ai) |
-| 15, 20, 21, 27, 28 | [HuggingFace](https://huggingface.co) |
-| 16–21 | NLP Specialization (deeplearning.ai) |
-| 22–25 | RAG course (deeplearning.ai) |
-| 26–29 | CV course + torchvision |
-| Tra cứu toán | [machinelearningcoban.com](https://machinelearningcoban.com) + [deepai-book](https://phamdinhkhanh.github.io/deepai-book/intro.html) |
+### 🔵 Phần 1: Machine Learning từ Scratch (Ngày 1 – 4)
+*Lý thuyết bạn đã nắm chắc + tính tay xong, giờ là lúc biến toán thành code Python/NumPy.*
+
+- **Ngày 1 · Linear Regression từ Scratch**:
+  - Tự code: Hàm mất mát MSE, Gradient Descent vector hóa (không loop qua samples).
+  - So sánh trực tiếp trọng số $W, b$ tìm được với `sklearn.linear_model.LinearRegression`.
+  - *Tài nguyên*: [Google MLCC Linear Regression](https://developers.google.com/machine-learning/crash-course/linear-regression).
+  - *Deliverable*: `day01_linear_regression.py`.
+
+- **Ngày 2 · Logistic Regression & Đánh giá Y sinh**:
+  - Tự code: Sigmoid, Binary Cross-Entropy Loss, Gradient Descent.
+  - Vẽ đường biên phân lớp (Decision Boundary) + Ma trận nhầm lẫn (Confusion Matrix), ROC-AUC.
+  - Test trên tập dữ liệu y sinh thực tế: `sklearn.datasets.load_breast_cancer()`.
+  - *Deliverable*: `day02_logistic_regression.py`.
+
+- **Ngày 3 · Regularization (L1/L2) & K-Fold Cross Validation**:
+  - Bổ sung $L_2$ Penalty (Weight Decay) vào hàm mất mát và gradient.
+  - Tự viết hàm chia K-Fold Cross-Validation từ đầu bằng NumPy.
+  - Vẽ biểu đồ thể hiện Trade-off Bias - Variance khi thay đổi $\lambda$.
+  - *Deliverable*: `day03_regularization.py`.
+
+- **Ngày 4 · Decision Trees & Tree Ensembles**:
+  - Dùng Scikit-learn xây dựng Random Forest & Gradient Boosting (XGBoost).
+  - Đánh giá Feature Importance trên bảng dữ liệu bệnh án.
+  - *Deliverable*: `day04_tree_ensembles.py`.
 
 ---
 
-## 💡 Nguyên tắc 30 ngày
+### 🔴 Phần 2: Deep Learning với PyTorch (Ngày 5 – 12)
+*Xương sống của mọi mô hình hiện đại.*
 
-> [!CAUTION]
-> **Không đọc nhiều hơn code.** Mỗi ngày tối đa 30 phút đọc — còn lại là gõ code.
+- **Ngày 5 · PyTorch Tensor, Autograd & Linear Model**:
+  - Thao tác Tensor nâng cao: broadcasting, tensor slicing, `einsum`.
+  - Tự tạo computational graph và kiểm tra đạo hàm tự động `loss.backward()`.
+  - Viết lại Linear & Logistic Regression hoàn toàn bằng `torch.nn.Module`.
+  - *Tài nguyên*: [D2L.ai Ch. 2 Preliminaries](https://d2l.ai/chapter_preliminaries/index.html).
+  - *Deliverable*: `day05_pytorch_basics.py`.
 
-1. **Push GitHub mỗi ngày** — kể cả code chưa xong
-2. **Không copy-paste** — gõ lại từng dòng kể cả khi nhìn tutorial
-3. **Chạy được = done** — đừng perfectionism, deliverable chỉ cần chạy và in kết quả
-4. Khi bị stuck > 20 phút — hỏi ngay, đừng tự block
+- **Ngày 6 · Multilayer Perceptron (MLP) & Custom Training Loop**:
+  - Xây dựng MLP với PyTorch: `nn.Linear`, `nn.ReLU`, `nn.Dropout`.
+  - Tự viết Training Loop chuẩn chỉnh: Train/Val split, Batch DataLoader, Loss logging.
+  - Huấn luyện trên Fashion-MNIST.
+  - *Tài nguyên*: [D2L.ai Ch. 5 MLP](https://d2l.ai/chapter_multilayer-perceptrons/index.html).
+  - *Deliverable*: `day06_mlp_training.py`.
 
+- **Ngày 7 · Optimization Algorithms (Cốt lõi cho RL sau này)**:
+  - So sánh thực nghiệm qua code: SGD, Momentum, RMSProp và Adam.
+  - Quan sát hiện tượng Learning Rate decay và Scheduler (`StepLR`, `CosineAnnealingLR`).
+  - *Tài nguyên*: [D2L.ai Ch. 12 Optimization](https://d2l.ai/chapter_optimization/index.html).
+  - *Deliverable*: `day07_optimizers_experiment.py`.
+
+- **Ngày 8 · Convolutional Neural Network (CNN) Cơ bản**:
+  - Tự code phép tính Convolution 2D bằng NumPy để hiểu bản chất Kernel, Stride, Padding.
+  - Dùng PyTorch xây dựng mạng LeNet-5 (`nn.Conv2d`, `nn.MaxPool2d`).
+  - *Tài nguyên*: [D2L.ai Ch. 7 CNN](https://d2l.ai/chapter_convolutional-neural-networks/index.html).
+  - *Deliverable*: `day08_cnn_lenet.py`.
+
+- **Ngày 9 · Modern CNN Architectures (ResNet & Skip Connections)**:
+  - Tự xây dựng khối `ResidualBlock` (ResNet-18) giải quyết vấn đề Vanishing Gradient.
+  - Huấn luyện ResNet-18 trên tập ảnh phân loại tế bào hoặc CIFAR-10.
+  - *Tài nguyên*: [D2L.ai Ch. 8 Modern CNN](https://d2l.ai/chapter_convolutional-modern/resnet.html).
+  - *Deliverable*: `day09_resnet.py`.
+
+- **Ngày 10 · Sequence Model: RNN & LSTM**:
+  - Cấu trúc `nn.LSTM` xử lý dữ liệu chuỗi (chuỗi thời gian / tín hiệu y sinh ECG).
+  - Xử lý vấn đề biến thiên độ dài chuỗi (`pack_padded_sequence`).
+  - *Tài nguyên*: [D2L.ai Ch. 9 RNN](https://d2l.ai/chapter_recurrent-neural-networks/index.html).
+  - *Deliverable*: `day10_lstm_sequential.py`.
+
+- **Ngày 11 · Cơ chế Attention & Transformer Encoder**:
+  - Code phép toán Scaled Dot-Product Attention: $\text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$.
+  - Lắp ráp Multi-Head Attention và Positional Encoding thành 1 khối Transformer Encoder.
+  - *Tài nguyên*: [D2L.ai Ch. 11 Attention Mechanisms](https://d2l.ai/chapter_attention-mechanisms-and-transformers/index.html).
+  - *Deliverable*: `day11_transformer_block.py`.
+
+- **Ngày 12 · Transfer Learning & Foundation Model Fine-tuning**:
+  - Tải pre-trained weights từ HuggingFace/Torchvision, đóng băng backbone (freeze), thay thế classification head.
+  - Làm quen với kỹ thuật tham số hiệu quả PEFT / LoRA cơ bản.
+  - *Deliverable*: `day12_transfer_learning.py`.
+
+---
+
+## 📅 CHẶNG 2: LEVEL 2 — CV TRACK (Ưu tiên 1) (Ngày 13 – 21)
+*Trọng tâm của biểu diễn ảnh y sinh & Vision-Language Foundation Models.*
+
+- **Ngày 13 · Tiền xử lý ảnh Y sinh & Data Augmentation**:
+  - Dùng `torchvision.transforms` để chuẩn hóa ảnh y sinh (Intensity clipping, Rotation, Random Affine).
+  - Xây dựng PyTorch Dataset pipeline tối ưu với `DataLoader(num_workers, pin_memory)`.
+  - *Deliverable*: `day13_biomed_data_pipeline.py`.
+
+- **Ngày 14 · Modern ConvNets: ConvNeXt & MobileNet**:
+  - Khảo sát các kiến trúc CNN hiện đại cho ứng dụng nhẹ (MobileNet) và dạng block hiện đại (ConvNeXt).
+  - Đánh giá FLOPS, số lượng tham số và tốc độ suy luận (Inference Latency).
+  - *Deliverable*: `day14_convnext_mobilenet.py`.
+
+- **Ngày 15 · Object Detection cơ bản (YOLO intuition)**:
+  - Khái niệm Bounding Box, Intersection over Union (IoU), Non-Maximum Suppression (NMS).
+  - Thực hành chạy inference và phân tích output của một mô hình YOLO pretrained trên ảnh y tế/vật thể.
+  - *Deliverable*: `day15_detection_pipeline.py`.
+
+- **Ngày 16 · Vision Transformers (ViT) Architecture**:
+  - Bản chất ViT: Cắt ảnh thành các Patch 16x16, xem mỗi patch như 1 "word token".
+  - Code lớp Patch Embedding và học các Positional Embeddings 2D.
+  - Tải pre-trained ViT (`google/vit-base-patch16-224`) từ HuggingFace và fine-tune.
+  - *Deliverable*: `day16_vit_implementation.py`.
+
+- **Ngày 17 · Biến thể ViT nâng cao (Swin Transformer)**:
+  - Hiểu cơ chế Shifted Windows (Swin Transformer) giải quyết bài toán độ phức tạp tính toán trên ảnh kích thước lớn.
+  - So sánh hiệu năng của CNN thông thường vs ViT vs Swin Transformer.
+  - *Deliverable*: `day17_swin_transformer.py`.
+
+- **Ngày 18 · Multimodal Models: CLIP (Contrastive Language-Image Pre-training)**:
+  - Cốt lõi của Multimodal: Dual Encoders (Image Encoder + Text Encoder).
+  - Code hàm mất mát InfoNCE Loss (Contrastive Cross-Entropy) căn chỉnh không gian embedding giữa Ảnh và Văn bản.
+  - *Deliverable*: `day18_clip_contrastive_loss.py`.
+
+- **Ngày 19 · Thực hành Zero-shot Classification với CLIP**:
+  - Sử dụng mô hình `openai/clip-vit-base-patch32` trên Hugging Face.
+  - Thực hiện phân loại ảnh zero-shot bằng text prompt (ví dụ: *"a photo of normal chest X-ray"* vs *"a photo of pneumonia"*).
+  - *Deliverable*: `day19_clip_zeroshot.py`.
+
+- **Ngày 20 · Explainability cho Vision: Grad-CAM (Khả năng giải thích)**:
+  - Code kỹ thuật Grad-CAM: dùng gradient của class score theo feature map cuối cùng để vẽ Heatmap vùng ảnh mô hình chú ý vào.
+  - Cực kỳ quan trọng đối với dữ liệu y tế (Bác sĩ cần biết mô hình nhìn vào đâu để chẩn đoán).
+  - *Deliverable*: `day20_gradcam_interpretable.py`.
+
+- **Ngày 21 · Generative Models cơ bản: VAE (Variational Autoencoder)**:
+  - Code cấu trúc Encoder - Latent Vector ($\mu, \sigma$) - Reparameterization Trick - Decoder.
+  - Khám phá không gian tiềm ẩn (Latent space) của ảnh.
+  - *Deliverable*: `day21_vae_representation.py`.
+
+---
+
+## 📅 CHẶNG 3: LEVEL 2 — NLP TRACK (Ưu tiên 2) (Ngày 22 – 27)
+*Xử lý văn bản, Bệnh án điện tử (EHR/Clinical notes) & Foundation Model text encoder.*
+
+- **Ngày 22 · Vector Space Models & Word Embeddings**:
+  - Tính toán ma trận Cosine Similarity giữa các từ và văn bản.
+  - Huấn luyện Word2Vec (CBOW) nhỏ hoặc trích xuất embedding từ mô hình ngôn ngữ pre-trained.
+  - *Deliverable*: `day22_word_embeddings.py`.
+
+- **Ngày 23 · Named Entity Recognition (NER) cho Y sinh**:
+  - Xây dựng mô hình Bi-LSTM / Transformer phân loại thực thể y khoa (Tên thuốc, Triệu chứng, Liều lượng) từ câu văn.
+  - *Deliverable*: `day23_biomed_ner.py`.
+
+- **Ngày 24 · Pre-trained Language Models: BERT & Tokenization**:
+  - Làm chủ HuggingFace Tokenizer (BPE/WordPiece, Attention Mask, Token Type IDs).
+  - Sử dụng BERT / ClinicalBERT để trích xuất Feature Representation từ đoạn văn bản y khoa.
+  - *Deliverable*: `day24_bert_feature_extractor.py`.
+
+- **Ngày 25 · Fine-tuning Text Classification**:
+  - Fine-tune BERT cho bài toán phân loại sắc thái hoặc phân loại bệnh lý từ đoạn ghi chú lâm sàng.
+  - Đánh giá F1-score và phân tích lỗi (Error Analysis).
+  - *Deliverable*: `day25_finetune_text_classifier.py`.
+
+- **Ngày 26 · Cross-Attention: Nối Ảnh và Văn bản**:
+  - Tự viết module Cross-Attention: Query lấy từ Text Tokens, Key/Value lấy từ Image Patch Tokens (cơ chế của BLIP/VLM).
+  - Đây là viên gạch kết nối trực tiếp CV và NLP cho hướng Multimodal Foundation Models.
+  - *Deliverable*: `day26_cross_attention_multimodal.py`.
+
+- **Ngày 27 · Interpretability cho Text: Attention Rollout & Saliency**:
+  - Trích xuất Attention Weights từ Transformer để xem các từ ngữ nào liên kết mạnh nhất với đặc trưng của ảnh.
+  - *Deliverable*: `day27_text_interpretability.py`.
+
+---
+
+## 📅 CHẶNG 4: REINFORCEMENT LEARNING & HOÀN THIỆN (Ngày 28 – 30)
+*Bàn đạp cho Sequential Decision Making (Ra quyết định tuần tự).*
+
+- **Ngày 28 · Cơ sở RL: Markov Decision Process (MDP) & Q-Learning**:
+  - Làm quen với môi trường [Gymnasium](https://gymnasium.farama.org/) (`CartPole` hoặc `FrozenLake`).
+  - Code thuật toán Tabular Q-Learning: Cập nhật Bellman Equation.
+  - *Deliverable*: `day28_tabular_qlearning.py`.
+
+- **Ngày 29 · Deep Q-Network (DQN) - Nối Neural Network vào RL**:
+  - Xây dựng Q-Network bằng PyTorch thay thế bảng Q-table.
+  - Tự code Replay Buffer và Target Network để ổn định quá trình học ra quyết định tuần tự.
+  - *Deliverable*: `day29_dqn_cartpole.py`.
+
+- **Ngày 30 · Tổng kết Milestone & Dọn dẹp Repo**:
+  - Review toàn bộ các script từ Ngày 1 đến Ngày 29.
+  - Hoàn thiện `README.md` của repo `30-ds-kt` với bảng mục lục, kết quả biểu đồ đã vẽ, và danh mục code mẫu.
+  - Sẵn sàng mang repo này gặp thầy cô và mentor khi bắt đầu giai đoạn lock-in!
+
+---
+
+## 📊 Phân bổ quỹ thời gian mỗi ngày (3 tiếng)
+
+```
+[00:00 - 00:30] Đọc lý thuyết / Xem công thức toán cần code
+[00:30 - 02:30] Code trực tiếp trên VS Code / Jupyter Notebook (Tự gõ, không copy-paste)
+[02:30 - 03:00] Debug, vẽ biểu đồ trực quan hóa, viết 2-3 dòng giải thích và Git Commit
+```
